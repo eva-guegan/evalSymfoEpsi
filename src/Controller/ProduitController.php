@@ -53,7 +53,16 @@ class ProduitController extends AbstractController
         $formulaire=$this->createForm(ProduitType::class, $produit);
         $formulaire->handleRequest($request);
 
-        if ($formulaire->isSubmitted() && $formulaire->isValid()){
+        $EAN=$produit->getEAN();
+        $dernierChiffreEAN=  $EAN{strlen($EAN)-1};
+
+        $tableau = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+        $calcul= $tableau[0]*1+$tableau[1]*3+$tableau[2]*1+$tableau[3]*3+$tableau[4]*1+$tableau[5]*3+$tableau[6]*1
+            +$tableau[7]*3+$tableau[8]*1+$tableau[9]*3+$tableau[10]*1+$tableau[11]*3; //24
+        $calcul2=$calcul-30;
+        $calcul3=$calcul2-($calcul2*2);
+
+        if ($formulaire->isSubmitted() && $formulaire->isValid() && $dernierChiffreEAN==$calcul3){
             $em=$this->getDoctrine()->getManager();
             $em->persist($produit);
             $em->flush();
@@ -62,7 +71,8 @@ class ProduitController extends AbstractController
 
         return $this->render('produit/form.html.twig', [
             'formulaire'=>$formulaire->createView(),
-            'h1'=>"Modifier le produit ".$produit->getNom()
+            'h1'=>"Modifier le produit ".$produit->getNom(),
+            "result"=>$calcul3
         ]);
     }
 
