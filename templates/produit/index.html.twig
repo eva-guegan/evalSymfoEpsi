@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block body %}
+    <h1>Liste des produits</h1>
+    <br />
+    <table class="table">
+        <tr>
+            <th>Réference</th>
+            <th>Nom</th>
+            <th>Description</th>
+            <th>EAN</th>
+            <th></th>
+            <th></th>
+        </tr>
+        {% for produit in produits %}
+            <tr>
+                <td>{{ produit.Reference }}</td>
+                <td>{{ produit.Nom }}</td>
+                <td>{{ produit.Description }}</td>
+                <td>{{ produit.EAN }}</td>
+                <td>
+                    <a href="{{ path('produit_modifier', { 'id':produit.id }) }}" class="btn btn-success">
+                        <i class="far fa-edit"></i>
+                    </a>
+                </td>
+                <td>
+                    <a href="{{ path('produit_supprimer', { 'id':produit.id }) }}" class="btn btn-red">
+                        <i class="far fa-edit"></i>
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ path('produit_ajouter') }}" class="btn btn-primary">Ajouter un produit</a>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ h1 }} {% endblock %}
+
+{% block body %}
+    <h1>{{ h1 }}</h1>
+    <br />
+
+    {{ form(formulaire) }}
+    <br />
+    <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
+{% endblock %}
