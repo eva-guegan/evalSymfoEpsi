@@ -32,7 +32,7 @@ class Produit
     private $Description;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $EAN;
 

@@ -6,7 +6,20 @@
     <h1>{{ h1 }}</h1>
     <br />
 
-    {{ form(formulaire) }}
+    {{ form_start(formulaire) }}
+    {{ form_row(formulaire.Reference) }}
+
+    {{ form_row(formulaire.Nom) }}
+
+    {{ form_row(formulaire.Description) }}
+
+    {{ form_label(formulaire.EAN) }}
+    {{ form_errors(formulaire.EAN) }}
+    {{ form_widget(formulaire.EAN) }}
+    <br />
+
+    {{ form_row(formulaire.Enregistrer) }}
+    {{ form_end(formulaire) }}
     <br />
     <a href="{{ path('home') }}" class="btn btn-primary">Retour</a>
 {% endblock %}
